@@ -1,4 +1,4 @@
-describe("Factorial", function() {
+/*describe("Factorial", function() {
     var testCases = [
         {
             n : 0,
@@ -65,4 +65,4 @@ describe("Arrangement", function() {
             expect(result).toEqual(testCase.arrangement);
         })
     })
-});
+});*/
