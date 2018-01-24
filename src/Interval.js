@@ -32,6 +32,12 @@ Interval.prototype.includes = function (interval) {
  * @returns {Interval[]}
  */
 Interval.prototype.union = function (interval) {
+	if (this.end < interval.start) {
+		return [this, interval];
+	} else if (interval.end < this.start) {
+		return [interval, this];
+	}
+	
 	var start, end;
 	start = this.start < interval.start ? this.start : interval.start;
 	end = this.end > interval.end ? this.end : interval.end;
@@ -45,7 +51,15 @@ Interval.prototype.union = function (interval) {
  * @returns {Interval|null}
  */
 Interval.prototype.intersection = function (interval) {
+	if (this.end < interval.start || interval.end < this.start) {
+		return null;
+	}
 	
+	var start, end;
+	start = this.start < interval.start ? interval.start : this.start;
+	end = this.end > interval.end ? interval.end : this.end;
+	
+	return new Interval(start, end);
 };
 
 /**
@@ -54,7 +68,7 @@ Interval.prototype.intersection = function (interval) {
  * @returns {Interval[]}
  */
 Interval.prototype.exclusion = function (interval) {
-
+	
 };
 
 
