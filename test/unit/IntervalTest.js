@@ -66,7 +66,7 @@ describe("Interval - union", function () {
 		},
 		{
 			interval : new Interval(8, 9),
-			result : new Interval(8,20)
+			result : [testedInterval, new Interval(8,20)]
 		},
 		{
 			interval : new Interval(8, 21),
@@ -74,7 +74,7 @@ describe("Interval - union", function () {
 		},
 		{
 			interval : new Interval(21, 22),
-			result : new Interval(10,22)
+			result : [testedInterval, new Interval(10,22)]
 		},
 		{
 			interval : new Interval(15, 16),
@@ -93,6 +93,62 @@ describe("Interval - union", function () {
             var result = testedInterval.union(interval.interval);
 			expect(result.start).toEqual(interval.result.start);
 			expect(result.end).toEqual(interval.result.end);
+        });
+    });
+});
+
+describe("Interval - intersection", function () {
+    testedInterval = new Interval(10, 20);
+
+    [
+		{
+			interval : new Interval(8, 12),
+			result : new Interval(10,12)
+		},
+		{
+			interval : new Interval(17, 22),
+			result : new Interval(17,20)
+		},
+		{
+			interval : new Interval(8, 9),
+			result : null
+		},
+		{
+			interval : new Interval(8, 21),
+			result : new Interval(10,20)
+		},
+		{
+			interval : new Interval(21, 22),
+			result : null
+		},
+		{
+			interval : new Interval(15, 16),
+			result : new Interval(15,16)
+		},
+		{
+			interval : new Interval(12, 19),
+			result : new Interval(12,19)
+		},
+		{
+			interval : new Interval(10, 20),
+			result : new Interval(10,20)
+		}
+    ].forEach(function (interval) {
+		var msg;
+		var expectNull = false;
+		if (interval.result === null) {
+			msg = "should returns null when doing intersection of " + testedInterval.toString() + " and " + interval.interval.toString();
+			expectNull = true;
+		} else
+			msg = "should returns Interval[" + interval.result.start + ", " + interval.result.end + "] when doing intersection of " + testedInterval.toString() + " and " + interval.interval.toString();
+        it(msg, function () {
+            var result = testedInterval.intersection(interval.interval);
+			if (expectNull)
+				expect(result).toEqual(interval.result);
+			else {
+				expect(result.start).toEqual(interval.result.start);
+				expect(result.end).toEqual(interval.result.end);
+			}
         });
     });
 });
