@@ -133,8 +133,44 @@ describe("IsPrime", function(){
 
     testCases.forEach(function(testCase) {
         it("should returns " + testCase.isPrime + " when n = " + testCase.n, function() {
-            var result = Util.isPrime(testCase.n, testCase.r);
+            var result = Util.isPrime(testCase.n);
             expect(result).toEqual(testCase.isPrime);
+        })
+    })
+});
+
+describe("SumPrime", function(){
+    var testCases = [
+		{
+            n : 1,
+            sumPrime : -9999
+        },
+        {
+            n : 4,
+            sumPrime : 5
+        },
+        {
+            n : 12,
+            sumPrime : 28
+        },
+        {
+            n : 16,
+            sumPrime : 41
+        },
+        {
+            n : 20,
+            sumPrime : 77
+        },
+        {
+            n : 35,
+            sumPrime : 160
+        }
+    ];
+	
+	testCases.forEach(function(testCase) {
+        it("should returns " + testCase.sumPrime + " when n = " + testCase.n, function() {
+            var result = Util.sumPrime(testCase.n);
+            expect(result).toEqual(testCase.sumPrime);
         })
     })
 });
