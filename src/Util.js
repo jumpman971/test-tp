@@ -73,8 +73,17 @@ Util.isPrime = function(n) {
  * @returns {number}
  */
 Util.sumPrime = function(n) {
+    var r = 0;
+	if (n < 2)
+		return -9999;
 
+    for (var i = 2; i < n; ++i) {
+        if(Util.isPrime(i))
+            r += i;
+    }
+    return r;
 };
+
 
 /**
  * Cette méthode doit retourner un tableau de 1 à n tel que:
