@@ -139,5 +139,9 @@ Util.fizzBuzz = function(n) {
  * @returns {string}
  */
 Util.cipher = function (phrase) {
-
+	var r = "";
+	for (var i = 0; i < phrase.length; ++i)
+		r += String.fromCharCode(phrase.charCodeAt(i)+1);
+	
+	return r;
 };
