@@ -183,3 +183,27 @@ describe("FizzBuzz", function(){
         expect(result).toEqual(tab);
     });
 });
+
+describe("Cipher", function(){
+    var testCases = [
+		{
+            phrase : "Test Unitaire",
+            cipher : "Uftu!Vojubjsf"
+        },
+        {
+            phrase : "école ensiie",
+            cipher : "êdpmf!fotjjf"
+        },
+        {
+            phrase : "la france",
+            cipher : "mb!gsbodf"
+        }
+    ];
+	
+	testCases.forEach(function(testCase) {
+        it("should returns " + testCase.cipher + " when phrase = " + testCase.phrase, function() {
+            var result = Util.cipher(testCase.phrase);
+            expect(result).toEqual(testCase.cipher);
+        })
+    })
+});
